@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Characters List View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="CharactersListViewController" customModule="RxMarvel" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WJT-sa-BRU">
+                                <rect key="frame" x="0.0" y="124" width="414" height="772"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="XOE-Wz-cKE"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Sqb-1R-Tyf"/>
+                                </connections>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eRX-go-yYl">
+                                <rect key="frame" x="0.0" y="44" width="414" height="80"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search you character" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xDa-EE-gcp">
+                                        <rect key="frame" x="20" y="10" width="374" height="60"/>
+                                        <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="xDa-EE-gcp" firstAttribute="centerY" secondItem="eRX-go-yYl" secondAttribute="centerY" id="0GP-Qr-CYi"/>
+                                    <constraint firstAttribute="bottom" secondItem="xDa-EE-gcp" secondAttribute="bottom" constant="10" id="FAj-n7-AGC"/>
+                                    <constraint firstItem="xDa-EE-gcp" firstAttribute="leading" secondItem="eRX-go-yYl" secondAttribute="leading" constant="20" id="NQA-xr-0RG"/>
+                                    <constraint firstAttribute="trailing" secondItem="xDa-EE-gcp" secondAttribute="trailing" constant="20" id="c93-RV-OZa"/>
+                                    <constraint firstAttribute="height" constant="80" id="pmp-Kk-lbL"/>
+                                    <constraint firstItem="xDa-EE-gcp" firstAttribute="top" secondItem="eRX-go-yYl" secondAttribute="top" constant="10" id="qzr-EZ-rJs"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eRX-go-yYl" secondAttribute="trailing" id="CF2-Q6-TbC"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="WJT-sa-BRU" secondAttribute="trailing" id="Ezj-PR-wI3"/>
+                            <constraint firstItem="eRX-go-yYl" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Jkg-9m-LlC"/>
+                            <constraint firstItem="eRX-go-yYl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Ufy-yp-vEy"/>
+                            <constraint firstItem="WJT-sa-BRU" firstAttribute="top" secondItem="eRX-go-yYl" secondAttribute="bottom" id="eOO-Wu-Hxy"/>
+                            <constraint firstItem="WJT-sa-BRU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ehr-2u-a7O"/>
+                            <constraint firstAttribute="bottom" secondItem="WJT-sa-BRU" secondAttribute="bottom" id="y5M-hN-Vtf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="searchTextfield" destination="xDa-EE-gcp" id="FZi-AQ-fJY"/>
+                        <outlet property="tableView" destination="WJT-sa-BRU" id="YIt-3o-Ts2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="140.57971014492756" y="72.991071428571431"/>
+        </scene>
+    </scenes>
+</document>
