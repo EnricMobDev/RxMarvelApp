@@ -8,13 +8,20 @@
 
 import UIKit
 
+protocol ErrorServiceVCDelegate : AnyObject {
+    func retryButton()
+}
+
 class ErrorServiceViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+    weak var delegate: ErrorServiceVCDelegate?
     
-    @IBAction func tryAgain(_ sender: Any) {
-        dismiss(animated: true)
-    }    
+    @IBAction func retryAction(_ sender: Any) {
+        dismiss(animated: true, completion: {
+            self.delegate?.retryButton()
+        })
+    }
 }
+
+
+

@@ -24,37 +24,30 @@
                         <constraint firstAttribute="width" constant="250" id="lgd-Af-n1D"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vvv-ZC-dlO">
-                    <rect key="frame" x="82" y="553" width="250" height="29"/>
-                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="17"/>
-                    <state key="normal" title="Try again">
-                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </state>
-                    <connections>
-                        <action selector="tryAgain:" destination="-1" eventType="touchUpInside" id="RCC-bH-cic"/>
-                    </connections>
-                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We have some problem loading the characters ..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qeb-nd-Htf">
                     <rect key="frame" x="20" y="299" width="374" height="44"/>
                     <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="22"/>
                     <color key="textColor" red="0.5450980392" green="0.51372549020000002" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ziA-kQ-e0E">
+                    <rect key="frame" x="184" y="578" width="46" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="retryAction:" destination="-1" eventType="touchUpInside" id="683-dD-rb9"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="jKj-eZ-0xU" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="5B3-Zv-b2A"/>
-                <constraint firstItem="vvv-ZC-dlO" firstAttribute="width" secondItem="jKj-eZ-0xU" secondAttribute="width" id="98K-fi-W1d"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="vvv-ZC-dlO" secondAttribute="bottom" priority="250" constant="280" id="Gw5-aF-Y9r"/>
                 <constraint firstItem="jKj-eZ-0xU" firstAttribute="top" secondItem="Qeb-nd-Htf" secondAttribute="bottom" constant="40" id="Pbe-3j-nuI"/>
                 <constraint firstItem="Qeb-nd-Htf" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="QmG-06-mH7"/>
                 <constraint firstItem="jKj-eZ-0xU" firstAttribute="top" secondItem="Qeb-nd-Htf" secondAttribute="bottom" constant="40" id="YkF-QV-NxO"/>
                 <constraint firstAttribute="trailing" secondItem="Qeb-nd-Htf" secondAttribute="trailing" constant="20" id="Zgd-I1-pji"/>
-                <constraint firstItem="vvv-ZC-dlO" firstAttribute="top" secondItem="jKj-eZ-0xU" secondAttribute="bottom" constant="40" id="caN-bW-Mm0"/>
                 <constraint firstItem="jKj-eZ-0xU" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="hQ5-Ap-lyh"/>
                 <constraint firstItem="Qeb-nd-Htf" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" priority="250" constant="255" id="nxs-dx-C1W"/>
-                <constraint firstItem="vvv-ZC-dlO" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="zPa-5d-lcU"/>
                 <constraint firstItem="Qeb-nd-Htf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="zyx-a6-0S2"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
