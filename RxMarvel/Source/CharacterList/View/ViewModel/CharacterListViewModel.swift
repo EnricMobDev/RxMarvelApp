@@ -18,10 +18,6 @@ struct CharacterListViewModel {
     init(_ characterList: [Result] = []) {
         self.characterListVM = characterList.compactMap(CharacterViewModel.init)
     }
-    
-    func characterAt(_ index: Int) -> CharacterViewModel {
-        return self.characterListVM[index]
-    }
 }
 
 //MARK: CharacterViewModel
