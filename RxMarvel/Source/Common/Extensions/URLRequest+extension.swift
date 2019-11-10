@@ -14,13 +14,22 @@ struct Resource<T: Decodable> {
     let url: URL
 }
 
-extension URLRequest {
+protocol MarvelRequestProtocol {
+    func load<T: Decodable>(resource: Resource<T>) -> Observable<T>
+}
+
+struct MarvelRequest: MarvelRequestProtocol {
+    let urlSession: URLSession
     
-    static func load<T: Decodable>(resource: Resource<T>) -> Observable<T> {
+    init(urlSession: URLSession = URLSession.shared) {
+        self.urlSession = urlSession
+    }
+    
+    func load<T: Decodable>(resource: Resource<T>) -> Observable<T> {
         return Observable.just(resource.url)
             .flatMap { url -> Observable<(response: HTTPURLResponse, data: Data)> in
-                    let request = URLRequest(url: url)
-                return URLSession.shared.rx.response(request: request)
+                let request = URLRequest(url: url)
+                return self.urlSession.rx.response(request: request)
         }.map { response, data -> T in
             
             if 200 ..< 300 ~= response.statusCode {

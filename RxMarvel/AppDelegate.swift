@@ -10,11 +10,19 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        let storyboard = Storyboards.characterList.instance
+
+        guard let initialViewController = storyboard.instantiateViewController(withIdentifier: "CharactersListViewController") as? CharactersListViewController else { return false }
+        initialViewController.settingsManager = MarvelSettingsManager()
+        initialViewController.request = MarvelRequest()
+
+        self.window?.rootViewController = initialViewController
+        self.window?.makeKeyAndVisible()
+
         return true
     }
     

@@ -14,7 +14,9 @@ import Kingfisher
 class CharactersListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     //MARK: Variables
-    private let settingsManager: SettingsManagerProtocol = MarvelSettingsManager()
+    var settingsManager: SettingsManagerProtocol = MarvelSettingsManager()
+    var request: MarvelRequestProtocol = MarvelRequest()
+    
     private let disposeBag = DisposeBag()
     private var charactersListVM: CharacterListViewModel = CharacterListViewModel()
     
@@ -26,6 +28,10 @@ class CharactersListViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var searchTextfield: UITextField!
     
     //MARK: Lifecycles
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -80,7 +86,7 @@ class CharactersListViewController: UIViewController, UITableViewDelegate, UITab
         guard let existUrl = URL(string: url) else { return .just([]) }
         let resource = Resource<MarvelAPI>(url: existUrl)
         
-        return URLRequest.load(resource: resource).map({ (characterResponse) -> [CharacterViewModel] in
+        return request.load(resource: resource).map({ (characterResponse) -> [CharacterViewModel] in
             let characters = characterResponse.data.results
             let viewModel = CharacterListViewModel.init(characters)
             return viewModel.characterListVM
