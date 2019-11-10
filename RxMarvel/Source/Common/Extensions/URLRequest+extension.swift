@@ -26,7 +26,6 @@ struct MarvelRequest: MarvelRequestProtocol {
     }
     
     func load<T: Decodable>(resource: Resource<T>) -> Observable<T> {
-//        return Observable.error(RxCocoaURLError.unknown) // For testing
         return Observable.just(resource.url)
             .flatMap { url -> Observable<(response: HTTPURLResponse, data: Data)> in
                 let request = URLRequest(url: url)
