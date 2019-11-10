@@ -18,7 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         guard let initialViewController = storyboard.instantiateViewController(withIdentifier: ViewControllers.charactersListViewController.rawValue) as? CharactersListViewController else { return false }
         initialViewController.settingsManager = MarvelSettingsManager()
-        initialViewController.request = MarvelRequest()
 
         self.window?.rootViewController = initialViewController
         self.window?.makeKeyAndVisible()

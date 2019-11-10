@@ -27,6 +27,8 @@
 		C562D2C423782CD200E02342 /* CharactersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C562D2BD23782CD200E02342 /* CharactersListViewController.swift */; };
 		C562D2C523782CD200E02342 /* CharactersList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C562D2BE23782CD200E02342 /* CharactersList.storyboard */; };
 		C562D2CD2378404B00E02342 /* StoryboardsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C562D2CC2378404B00E02342 /* StoryboardsUtils.swift */; };
+		C5F1078D23787A81007BE1D8 /* ErrorServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F1078B23787A81007BE1D8 /* ErrorServiceViewController.swift */; };
+		C5F1078E23787A81007BE1D8 /* ErrorServiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5F1078C23787A81007BE1D8 /* ErrorServiceViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,8 @@
 		C562D2BD23782CD200E02342 /* CharactersListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharactersListViewController.swift; sourceTree = "<group>"; };
 		C562D2BF23782CD200E02342 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CharactersList.storyboard; sourceTree = "<group>"; };
 		C562D2CC2378404B00E02342 /* StoryboardsUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardsUtils.swift; sourceTree = "<group>"; };
+		C5F1078B23787A81007BE1D8 /* ErrorServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorServiceViewController.swift; sourceTree = "<group>"; };
+		C5F1078C23787A81007BE1D8 /* ErrorServiceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorServiceViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -298,6 +302,7 @@
 		C562D2C723783CFB00E02342 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				C5F107852378774F007BE1D8 /* Views */,
 				C562D2C823783D1D00E02342 /* Settings */,
 				C5546F312371FB5300529D27 /* Utils */,
 				C5546F2E2371F9EF00529D27 /* Extensions */,
@@ -335,6 +340,23 @@
 			children = (
 			);
 			path = CharacterDetail;
+			sourceTree = "<group>";
+		};
+		C5F107852378774F007BE1D8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C5F1078A237877E5007BE1D8 /* ErrorViewWithService */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C5F1078A237877E5007BE1D8 /* ErrorViewWithService */ = {
+			isa = PBXGroup;
+			children = (
+				C5F1078B23787A81007BE1D8 /* ErrorServiceViewController.swift */,
+				C5F1078C23787A81007BE1D8 /* ErrorServiceViewController.xib */,
+			);
+			path = ErrorViewWithService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -446,6 +468,7 @@
 				C562D2C523782CD200E02342 /* CharactersList.storyboard in Resources */,
 				C5546F032371EF9000529D27 /* LaunchScreen.storyboard in Resources */,
 				C5546F002371EF9000529D27 /* Assets.xcassets in Resources */,
+				C5F1078E23787A81007BE1D8 /* ErrorServiceViewController.xib in Resources */,
 				C562D2C123782CD200E02342 /* CharacterListTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -513,6 +536,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5F1078D23787A81007BE1D8 /* ErrorServiceViewController.swift in Sources */,
 				C562D2CD2378404B00E02342 /* StoryboardsUtils.swift in Sources */,
 				C562D2C423782CD200E02342 /* CharactersListViewController.swift in Sources */,
 				C50EC718237360DA00E5E79A /* GetCellIdentifierProtocol.swift in Sources */,

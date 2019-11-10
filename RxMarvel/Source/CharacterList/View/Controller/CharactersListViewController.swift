@@ -90,6 +90,10 @@ class CharactersListViewController: UIViewController, UITableViewDelegate {
         }
         .disposed(by: disposeBag)
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView
+    }
 }
 
     //MARK: UIScrollViewDelegate
