@@ -18,27 +18,23 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WJT-sa-BRU">
                                 <rect key="frame" x="0.0" y="124" width="414" height="772"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="XOE-Wz-cKE"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Sqb-1R-Tyf"/>
-                                </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eRX-go-yYl">
                                 <rect key="frame" x="0.0" y="44" width="414" height="80"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search you character" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xDa-EE-gcp">
-                                        <rect key="frame" x="20" y="10" width="374" height="60"/>
-                                        <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="18"/>
+                                    <searchBar contentMode="redraw" placeholder="Search your character" translatesAutoresizingMaskIntoConstraints="NO" id="Avp-Ls-544">
+                                        <rect key="frame" x="10" y="10" width="394" height="60"/>
                                         <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                    </searchBar>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="xDa-EE-gcp" firstAttribute="centerY" secondItem="eRX-go-yYl" secondAttribute="centerY" id="0GP-Qr-CYi"/>
-                                    <constraint firstAttribute="bottom" secondItem="xDa-EE-gcp" secondAttribute="bottom" constant="10" id="FAj-n7-AGC"/>
-                                    <constraint firstItem="xDa-EE-gcp" firstAttribute="leading" secondItem="eRX-go-yYl" secondAttribute="leading" constant="20" id="NQA-xr-0RG"/>
-                                    <constraint firstAttribute="trailing" secondItem="xDa-EE-gcp" secondAttribute="trailing" constant="20" id="c93-RV-OZa"/>
+                                    <constraint firstAttribute="bottom" secondItem="Avp-Ls-544" secondAttribute="bottom" constant="10" id="73l-Jq-wTI"/>
+                                    <constraint firstItem="Avp-Ls-544" firstAttribute="centerX" secondItem="eRX-go-yYl" secondAttribute="centerX" id="Iyw-6Z-82o"/>
+                                    <constraint firstItem="Avp-Ls-544" firstAttribute="leading" secondItem="eRX-go-yYl" secondAttribute="leading" constant="10" id="Qhj-Cb-Mte"/>
+                                    <constraint firstAttribute="trailing" secondItem="Avp-Ls-544" secondAttribute="trailing" constant="10" id="ccy-du-XbQ"/>
+                                    <constraint firstItem="Avp-Ls-544" firstAttribute="centerY" secondItem="eRX-go-yYl" secondAttribute="centerY" id="gaP-0c-kCS"/>
                                     <constraint firstAttribute="height" constant="80" id="pmp-Kk-lbL"/>
-                                    <constraint firstItem="xDa-EE-gcp" firstAttribute="top" secondItem="eRX-go-yYl" secondAttribute="top" constant="10" id="qzr-EZ-rJs"/>
+                                    <constraint firstItem="Avp-Ls-544" firstAttribute="top" secondItem="eRX-go-yYl" secondAttribute="top" constant="10" id="wTb-wX-fuU"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -55,7 +51,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="searchTextfield" destination="xDa-EE-gcp" id="FZi-AQ-fJY"/>
+                        <outlet property="searchBar" destination="Avp-Ls-544" id="7tX-36-EdR"/>
                         <outlet property="tableView" destination="WJT-sa-BRU" id="YIt-3o-Ts2"/>
                     </connections>
                 </viewController>
