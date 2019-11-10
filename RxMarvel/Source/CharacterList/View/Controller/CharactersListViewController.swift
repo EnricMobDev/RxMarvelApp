@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import Kingfisher
 
-class CharactersListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CharactersListViewController: UIViewController, UITableViewDelegate {
     
     //MARK: Variables
     var settingsManager: SettingsManagerProtocol = MarvelSettingsManager()
@@ -19,19 +19,13 @@ class CharactersListViewController: UIViewController, UITableViewDelegate, UITab
     
     private let disposeBag = DisposeBag()
     private var charactersListVM: CharacterListViewModel = CharacterListViewModel()
-    
-    // MARK: Add the behaviorRelay to create a varibale for use in this table
-    private var characters = BehaviorRelay<String>(value: "")
-    
+
     //MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchTextfield: UITextField!
     
     //MARK: Lifecycles
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,7 +33,6 @@ class CharactersListViewController: UIViewController, UITableViewDelegate, UITab
                            forCellReuseIdentifier: CharacterListTableViewCell.cellIdentifier())
         
         tableView.delegate = self
-        tableView.dataSource = nil
         
         setupRx()
     }
@@ -72,7 +65,7 @@ class CharactersListViewController: UIViewController, UITableViewDelegate, UITab
             self.tableView.reloadData()
         }
     }
-    
+        
     //MARK: Fetch Characters
     
     func fetchCharactersFrom(url: String) -> Observable<[CharacterViewModel]> {
@@ -84,36 +77,6 @@ class CharactersListViewController: UIViewController, UITableViewDelegate, UITab
             let viewModel = CharacterListViewModel.init(characters)
             return viewModel.characterListVM
         })
-    }
-    
-    //MARK: UITableViewDataSource
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return charactersListVM.characterListVM.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CharacterListTableViewCell.cellIdentifier(),for: indexPath) as? CharacterListTableViewCell else {
-            assertionFailure("CharacterListTableViewCell is not found")
-            return UITableViewCell()
-        }
-        
-        let characterVM = charactersListVM.characterAt(indexPath.row)
-//        characterVM.listOfImages = cell.imageView?.kf.setImage(with: url)
-        
-        characterVM.characterName.asDriver(onErrorJustReturn: "")
-            .drive(cell.characterLabel.rx.text)
-            .disposed(by: disposeBag)
-        
-//        characterVM.listOfImages.asDriver(onErrorJustReturn: UIImage())
-//            .drive(cell.characterImage.rx.image)
-//            .disposed(by: disposeBag)
-        
-        return cell
     }
 }
 
