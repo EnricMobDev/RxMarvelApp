@@ -26,7 +26,7 @@
 		C562D2C323782CD200E02342 /* CharacterListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C562D2BA23782CD200E02342 /* CharacterListModel.swift */; };
 		C562D2C423782CD200E02342 /* CharactersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C562D2BD23782CD200E02342 /* CharactersListViewController.swift */; };
 		C562D2C523782CD200E02342 /* CharactersList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C562D2BE23782CD200E02342 /* CharactersList.storyboard */; };
-		C562D2CD2378404B00E02342 /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = C562D2CC2378404B00E02342 /* Storyboards.swift */; };
+		C562D2CD2378404B00E02342 /* StoryboardsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C562D2CC2378404B00E02342 /* StoryboardsUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,7 +74,7 @@
 		C562D2BA23782CD200E02342 /* CharacterListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterListModel.swift; sourceTree = "<group>"; };
 		C562D2BD23782CD200E02342 /* CharactersListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharactersListViewController.swift; sourceTree = "<group>"; };
 		C562D2BF23782CD200E02342 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CharactersList.storyboard; sourceTree = "<group>"; };
-		C562D2CC2378404B00E02342 /* Storyboards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
+		C562D2CC2378404B00E02342 /* StoryboardsUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardsUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,7 +300,7 @@
 				C562D2C823783D1D00E02342 /* Settings */,
 				C5546F312371FB5300529D27 /* Utils */,
 				C5546F2E2371F9EF00529D27 /* Extensions */,
-				C562D2CC2378404B00E02342 /* Storyboards.swift */,
+				C562D2CC2378404B00E02342 /* StoryboardsUtils.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -513,7 +513,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C562D2CD2378404B00E02342 /* Storyboards.swift in Sources */,
+				C562D2CD2378404B00E02342 /* StoryboardsUtils.swift in Sources */,
 				C562D2C423782CD200E02342 /* CharactersListViewController.swift in Sources */,
 				C50EC718237360DA00E5E79A /* GetCellIdentifierProtocol.swift in Sources */,
 				C508E97C2372260000ED3294 /* URLRequest+extension.swift in Sources */,

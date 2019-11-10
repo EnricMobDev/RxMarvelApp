@@ -52,13 +52,14 @@ class CharactersListViewController: UIViewController, UITableViewDelegate, UITab
         
         // Binding to tableview
         Observable.combineLatest(loadData, latestSearch) { results, queryText in
-            return results.filter { $0.characterResult.name.starts(with: queryText) || queryText.isEmpty }
+            return results.filter { $0.characterResult.name.lowercased().hasPrefix(queryText.lowercased()) || queryText.isEmpty }
         }.asObservable()
             .bind(to: tableView.rx.items(cellIdentifier: CharacterListTableViewCell.cellIdentifier(),
                                          cellType: CharacterListTableViewCell.self)) {
                                             (index, viewModel: CharacterViewModel, cell) in
                                             let url = URL(string: viewModel.characterResult.thumbnail.imageURL())!
                                             cell.characterLabel.text = viewModel.characterResult.name
+                                            //Bind with kingfisher
                                             cell.characterImage.kf.setImage(with: url)
                                             cell.setNeedsLayout()
         }
@@ -120,10 +121,12 @@ class CharactersListViewController: UIViewController, UITableViewDelegate, UITab
 //            .drive(cell.characterImage.rx.image)
 //            .disposed(by: disposeBag)
         
-        
-//        cell.drawCornerRadius()
-//        cell.addBorder()
         return cell
     }
 }
 
+extension CharactersListViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        searchTextfield.resignFirstResponder()
+    }
+}

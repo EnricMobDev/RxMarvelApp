@@ -15,3 +15,7 @@ enum Storyboards: String {
         return UIStoryboard(name: self.rawValue, bundle: nil)
     }
 }
+
+enum ViewControllers: String {
+    case charactersListViewController = "CharactersListViewController"
+}
