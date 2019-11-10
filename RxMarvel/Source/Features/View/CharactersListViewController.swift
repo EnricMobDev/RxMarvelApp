@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import Kingfisher
 
-class CharactersListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class CharactersListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     //MARK: Variables
     private let settingsManager: SettingsManagerProtocol = MarvelSettingsManager()
@@ -33,8 +33,7 @@ class CharactersListViewController: UIViewController, UITableViewDelegate, UITab
                            forCellReuseIdentifier: CharacterListTableViewCell.cellIdentifier())
         
         tableView.delegate = self
-        tableView.dataSource = nil
-        searchTextfield.delegate = nil
+        tableView.dataSource = self
         
         setupRx()
     }
@@ -44,15 +43,25 @@ class CharactersListViewController: UIViewController, UITableViewDelegate, UITab
         let latestSearch = searchTextfield.rx.text.orEmpty
         let loadData = fetchCharactersFrom(url: url)
         
+        
+        // Binding to tableview
+//        Observable.combineLatest(loadData, latestSearch) { results, queryText in
+//            return results.filter { $0.characterResult.name.starts(with: queryText) || queryText.isEmpty }
+//        }.asObservable()
+//            .bind(to: tableView.rx.items(cellIdentifier: CharacterListTableViewCell.cellIdentifier(),
+//                                         cellType: CharacterListTableViewCell.self)) {
+//                                            (index, viewModel: CharacterViewModel, cell) in
+//                                            cell.characterLabel.text = viewModel.characterResult.name
+//        }
+//        .disposed(by: disposeBag)
+        
+        
         Observable.combineLatest(loadData, latestSearch) { results, queryText in
             return results.filter { $0.characterResult.name.starts(with: queryText) || queryText.isEmpty }
-        }.asObservable()
-            .bind(to: tableView.rx.items(cellIdentifier: CharacterListTableViewCell.cellIdentifier(),
-                                         cellType: CharacterListTableViewCell.self)) {
-                                            (index, viewModel: CharacterViewModel, cell) in
-                                            cell.characterLabel.text = viewModel.characterResult.name
-        }
-        .disposed(by: disposeBag)
+        }.subscribe(onNext: { (viewModels) in
+            self.charactersListVM.characterListVM = viewModels
+            self.updateTableView()
+        }).disposed(by: disposeBag)
     }
     
     //MARK: Reload Table
@@ -65,38 +74,15 @@ class CharactersListViewController: UIViewController, UITableViewDelegate, UITab
     //MARK: Fetch Characters
     
     func fetchCharactersFrom(url: String) -> Observable<[CharacterViewModel]> {
-        if let existUrl = URL(string: url) {
-            let resource = Resource<MarvelAPI>(url: existUrl)
-            
-            return URLRequest.load(resource: resource).map({ (characterResponse) -> [CharacterViewModel] in
-                let characters = characterResponse.data.results
-                let viewModel = CharacterListViewModel.init(characters)
-                return viewModel.characterListVM
-            })
-        } else {
-            return .just([])
-        }
+        guard let existUrl = URL(string: url) else { return .just([]) }
+        let resource = Resource<MarvelAPI>(url: existUrl)
+        
+        return URLRequest.load(resource: resource).map({ (characterResponse) -> [CharacterViewModel] in
+            let characters = characterResponse.data.results
+            let viewModel = CharacterListViewModel.init(characters)
+            return viewModel.characterListVM
+        })
     }
-    
-//    func fetchCharactersFrom(url: String) {
-//
-//        if let existUrl = URL(string: url) {
-//            let resource = Resource<MarvelAPI>(url: existUrl)
-//
-//            URLRequest.load(resource: resource)
-//                .subscribe(onNext: { [weak self] characterResponse in
-//                    guard let self = self else { return }
-//
-//                    let characters = characterResponse.data.results
-//                    self.charactersListVM = CharacterListViewModel.init(characters)
-//
-//                    self.updateTableView()
-//
-//                }).disposed(by: disposeBag)
-//        } else {
-//            //TODO: Throw error
-//        }
-//    }
     
     //MARK: UITableViewDataSource
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -140,26 +126,6 @@ class CharactersListViewController: UIViewController, UITableViewDelegate, UITab
 //        cell.drawCornerRadius()
 //        cell.addBorder()
         return cell
-    }
-    
-    //MARK: UITextFieldDelegate
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        guard let searchText = textField.text else { return false }
-        
-        
-        
-//        characters.asObservable()
-//            .subscribe { [weak self] in
-//                self?.charactersListVM.characterListVM.filter { $0.characterResult.name.starts(with: text)}
-//                self?.updateTableView()
-//        }
-        
-//        characters.accept(text)
-        
-//        guard let text = textField.text else { return false }
-//        filteredCharacters = charactersListVM.searchBy(text)
-        return true
     }
 }
 
