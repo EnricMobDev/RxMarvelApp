@@ -14,7 +14,6 @@ import RxSwift
 struct CharacterListViewModel {
     
     var characterListVM: [CharacterViewModel]
-    var filteredCharacters: [CharacterViewModel] = []
 
     init(_ characterList: [Result] = []) {
         self.characterListVM = characterList.compactMap(CharacterViewModel.init)
@@ -23,30 +22,10 @@ struct CharacterListViewModel {
     func characterAt(_ index: Int) -> CharacterViewModel {
         return self.characterListVM[index]
     }
-    
-    func filterBy(_ character: String) {
-        filteredCharacters
-        //let observable = Observable.just(characterListVM.filter { $0.characterResult.name.starts(with: character)})
-        
-    }
 }
 
 //MARK: CharacterViewModel
 struct CharacterViewModel {
     
     let characterResult: Result
-    var listOfImages: UIImage
-
-    init(_ character: Result) {
-        self.characterResult = character
-        self.listOfImages = UIImage()
-    }
-    
-    var characterName: Observable<String> {
-        return Observable<String>.just(characterResult.name)
-    }
-    
-    var image: Observable<UIImage> {
-        return Observable<UIImage>.just(listOfImages)
-    }
 }
