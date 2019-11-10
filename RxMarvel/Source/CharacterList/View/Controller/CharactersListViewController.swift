@@ -22,7 +22,7 @@ class CharactersListViewController: UIViewController, UITableViewDelegate {
     //MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-        
+    
     //MARK: Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +31,7 @@ class CharactersListViewController: UIViewController, UITableViewDelegate {
                            forCellReuseIdentifier: CharacterListTableViewCell.cellIdentifier())
         
         tableView.delegate = self
+        tableView.dataSource = nil
         tableView.backgroundView = loadingView()
         setupRxCells()
     }
@@ -49,32 +50,31 @@ class CharactersListViewController: UIViewController, UITableViewDelegate {
         return view
     }
     
-    private func errorView() -> UIView {
-        let view = UIView()
-        view.backgroundColor = .red
-        return view
+    private func showErrorView() {
+        DispatchQueue.main.async {
+            let errorServiceView = ErrorServiceViewController()
+            errorServiceView.delegate = self
+            self.present(errorServiceView, animated: true)
+        }
     }
     
-    private func setupRxCells() {
+    func setupRxCells() {
         let url = settingsManager.apiURL
         let latestSearch = searchBar.rx.text.orEmpty
-        let loadData = viewModel.fetchCharactersFrom(url: url).do(onError: { (error) in
+        let loadData = viewModel.fetchCharactersFrom(url: url).do(onError: { [weak self] (error) in
+            
+            guard let self = self else { return }
             switch error {
             case RxCocoaURLError.httpRequestFailed:
-                break
+                self.showErrorView()
             default:
-                break
-            }
-            
-            DispatchQueue.main.async {
-                self.tableView.backgroundView = self.errorView()
+                self.showErrorView()
             }
         }, onCompleted: {
             DispatchQueue.main.async {
                 self.tableView.backgroundView = nil
             }
         }).catchErrorJustReturn([])
-        
         
         // Binding to tableview
         Observable.combineLatest(loadData, latestSearch) { results, queryText in
@@ -90,15 +90,19 @@ class CharactersListViewController: UIViewController, UITableViewDelegate {
         }
         .disposed(by: disposeBag)
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView
-    }
 }
 
-    //MARK: UIScrollViewDelegate
+//MARK: UIScrollViewDelegate
 extension CharactersListViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         searchBar.resignFirstResponder()
+    }
+}
+
+//MARK: ErrorServiceVCDelegate
+extension CharactersListViewController: ErrorServiceVCDelegate {
+    
+    func retryButton() {
+        self.viewDidLoad()
     }
 }
