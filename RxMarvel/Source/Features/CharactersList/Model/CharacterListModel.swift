@@ -33,6 +33,12 @@ struct Thumbnail: Codable {
         case path
         case thumbnailExtension = "extension"
     }
+    
+    func imageURL(with size: Imagesize = .large) -> String {
+        let url = "\(path)/\(size.rawValue).\(thumbnailExtension.rawValue)"
+        print(url)
+        return url
+    }
 }
 
 // MARK: - Extension
@@ -43,7 +49,7 @@ enum Extension: String, Codable {
 
 // MARK: - ImageSizes
 enum Imagesize: String {
-    case largeJPGImageSize = "portrait_xlarge.jpg"
-    case largeGIFImageSize = "portrait_xlarge.gif"
+    case large = "portrait_xlarge"
+    case medium = "portrait_medium"
 }
 

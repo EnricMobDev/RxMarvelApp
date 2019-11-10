@@ -33,7 +33,7 @@ class CharactersListViewController: UIViewController, UITableViewDelegate, UITab
                            forCellReuseIdentifier: CharacterListTableViewCell.cellIdentifier())
         
         tableView.delegate = self
-        tableView.dataSource = self
+        tableView.dataSource = nil
         
         setupRx()
     }
@@ -45,23 +45,26 @@ class CharactersListViewController: UIViewController, UITableViewDelegate, UITab
         
         
         // Binding to tableview
-//        Observable.combineLatest(loadData, latestSearch) { results, queryText in
-//            return results.filter { $0.characterResult.name.starts(with: queryText) || queryText.isEmpty }
-//        }.asObservable()
-//            .bind(to: tableView.rx.items(cellIdentifier: CharacterListTableViewCell.cellIdentifier(),
-//                                         cellType: CharacterListTableViewCell.self)) {
-//                                            (index, viewModel: CharacterViewModel, cell) in
-//                                            cell.characterLabel.text = viewModel.characterResult.name
-//        }
-//        .disposed(by: disposeBag)
-        
-        
         Observable.combineLatest(loadData, latestSearch) { results, queryText in
             return results.filter { $0.characterResult.name.starts(with: queryText) || queryText.isEmpty }
-        }.subscribe(onNext: { (viewModels) in
-            self.charactersListVM.characterListVM = viewModels
-            self.updateTableView()
-        }).disposed(by: disposeBag)
+        }.asObservable()
+            .bind(to: tableView.rx.items(cellIdentifier: CharacterListTableViewCell.cellIdentifier(),
+                                         cellType: CharacterListTableViewCell.self)) {
+                                            (index, viewModel: CharacterViewModel, cell) in
+                                            let url = URL(string: viewModel.characterResult.thumbnail.imageURL())!
+                                            cell.characterLabel.text = viewModel.characterResult.name
+                                            cell.characterImage.kf.setImage(with: url)
+                                            cell.setNeedsLayout()
+        }
+        .disposed(by: disposeBag)
+        
+        
+//        Observable.combineLatest(loadData, latestSearch) { results, queryText in
+//            return results.filter { $0.characterResult.name.starts(with: queryText) || queryText.isEmpty }
+//        }.subscribe(onNext: { (viewModels) in
+//            self.charactersListVM.characterListVM = viewModels
+//            self.updateTableView()
+//        }).disposed(by: disposeBag)
     }
     
     //MARK: Reload Table
@@ -101,17 +104,6 @@ class CharactersListViewController: UIViewController, UITableViewDelegate, UITab
         }
         
         let characterVM = charactersListVM.characterAt(indexPath.row)
-        
-        //MARK: Function to create kingfisher images
-        var stringUrl = ""
-        switch characterVM.characterResult.thumbnail.thumbnailExtension {
-        case .jpg:
-            stringUrl = "\(characterVM.characterResult.thumbnail.path)/\(Imagesize.largeJPGImageSize)"
-        case .gif:
-            stringUrl = "\(characterVM.characterResult.thumbnail.path)/\(Imagesize.largeGIFImageSize)"
-        }
-        guard let url = URL(string: stringUrl) else { return UITableViewCell() }
-        
 //        characterVM.listOfImages = cell.imageView?.kf.setImage(with: url)
         
         characterVM.characterName.asDriver(onErrorJustReturn: "")
