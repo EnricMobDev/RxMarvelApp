@@ -57,21 +57,13 @@ class CharactersListViewController: UIViewController, UITableViewDelegate, UITab
             .bind(to: tableView.rx.items(cellIdentifier: CharacterListTableViewCell.cellIdentifier(),
                                          cellType: CharacterListTableViewCell.self)) {
                                             (index, viewModel: CharacterViewModel, cell) in
-                                            let url = URL(string: viewModel.characterResult.thumbnail.imageURL())!
+                                            let url = viewModel.characterResult.thumbnail.imageURL()
                                             cell.characterLabel.text = viewModel.characterResult.name
                                             //Bind with kingfisher
                                             cell.characterImage.kf.setImage(with: url)
                                             cell.setNeedsLayout()
         }
         .disposed(by: disposeBag)
-        
-        
-//        Observable.combineLatest(loadData, latestSearch) { results, queryText in
-//            return results.filter { $0.characterResult.name.starts(with: queryText) || queryText.isEmpty }
-//        }.subscribe(onNext: { (viewModels) in
-//            self.charactersListVM.characterListVM = viewModels
-//            self.updateTableView()
-//        }).disposed(by: disposeBag)
     }
     
     //MARK: Reload Table

@@ -212,6 +212,7 @@
 		C5546F312371FB5300529D27 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				C562D2CC2378404B00E02342 /* StoryboardsUtils.swift */,
 				C50EC716237360BB00E5E79A /* Protocols */,
 				C5546F372371FFF600529D27 /* KeychainWrapper */,
 			);
@@ -300,7 +301,6 @@
 				C562D2C823783D1D00E02342 /* Settings */,
 				C5546F312371FB5300529D27 /* Utils */,
 				C5546F2E2371F9EF00529D27 /* Extensions */,
-				C562D2CC2378404B00E02342 /* StoryboardsUtils.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";

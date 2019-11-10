@@ -34,10 +34,9 @@ struct Thumbnail: Codable {
         case thumbnailExtension = "extension"
     }
     
-    func imageURL(with size: Imagesize = .large) -> String {
-        let url = "\(path)/\(size.rawValue).\(thumbnailExtension.rawValue)"
-        print(url)
-        return url
+    func imageURL(with size: Imagesize = .large) -> URL? {
+        let stringURL = "\(path)/\(size.rawValue).\(thumbnailExtension.rawValue)"
+        return URL(string: stringURL)
     }
 }
 
