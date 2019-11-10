@@ -22,6 +22,8 @@ class CharactersListViewController: UIViewController, UITableViewDelegate {
 
     //MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     @IBOutlet weak var searchTextfield: UITextField!
     
     //MARK: Lifecycles
@@ -33,39 +35,64 @@ class CharactersListViewController: UIViewController, UITableViewDelegate {
                            forCellReuseIdentifier: CharacterListTableViewCell.cellIdentifier())
         
         tableView.delegate = self
-        
+        tableView.backgroundView = loadingView()
         setupRx()
+    }
+    
+    private func loadingView() -> UIView {
+        let view = UIView()
+        let loader = UIActivityIndicatorView(style: .large)
+        loader.startAnimating()
+        view.addSubview(loader)
+        loader.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            loader.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loader.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+        ])
+        return view
+    }
+    
+    private func errorView() -> UIView {
+        let view = UIView()
+        view.backgroundColor = .red
+        return view
     }
     
     private func setupRx() {
         let url = settingsManager.apiURL
-        let latestSearch = searchTextfield.rx.text.orEmpty
-        let loadData = fetchCharactersFrom(url: url)
+        let latestSearch = searchBar.rx.text.orEmpty
+        let loadData = fetchCharactersFrom(url: url).do(onError: { (error) in
+            switch error {
+            case RxCocoaURLError.httpRequestFailed:
+                break
+            default:
+                break
+            }
+            
+            DispatchQueue.main.async {
+                self.tableView.backgroundView = self.errorView()
+            }
+        }, onCompleted: {
+            DispatchQueue.main.async {
+                self.tableView.backgroundView = nil
+            }
+        }).catchErrorJustReturn([])
         
         
         // Binding to tableview
         Observable.combineLatest(loadData, latestSearch) { results, queryText in
             return results.filter { $0.characterResult.name.lowercased().hasPrefix(queryText.lowercased()) || queryText.isEmpty }
-        }.asObservable()
-            .bind(to: tableView.rx.items(cellIdentifier: CharacterListTableViewCell.cellIdentifier(),
+        }.bind(to: tableView.rx.items(cellIdentifier: CharacterListTableViewCell.cellIdentifier(),
                                          cellType: CharacterListTableViewCell.self)) {
                                             (index, viewModel: CharacterViewModel, cell) in
                                             let url = viewModel.characterResult.thumbnail.imageURL()
                                             cell.characterLabel.text = viewModel.characterResult.name
                                             //Bind with kingfisher
                                             cell.characterImage.kf.setImage(with: url)
-                                            cell.setNeedsLayout()
         }
         .disposed(by: disposeBag)
     }
-    
-    //MARK: Reload Table
-    private func updateTableView() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
-        
+
     //MARK: Fetch Characters
     
     func fetchCharactersFrom(url: String) -> Observable<[CharacterViewModel]> {
@@ -82,6 +109,6 @@ class CharactersListViewController: UIViewController, UITableViewDelegate {
 
 extension CharactersListViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        searchTextfield.resignFirstResponder()
+        searchBar.resignFirstResponder()
     }
 }
