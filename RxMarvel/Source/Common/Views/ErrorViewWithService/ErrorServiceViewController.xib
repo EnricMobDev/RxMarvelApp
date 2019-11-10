@@ -30,10 +30,13 @@
                     <color key="textColor" red="0.5450980392" green="0.51372549020000002" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ziA-kQ-e0E">
-                    <rect key="frame" x="184" y="578" width="46" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Button"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ziA-kQ-e0E">
+                    <rect key="frame" x="82" y="543" width="250" height="40"/>
+                    <color key="backgroundColor" red="0.5450980392" green="0.51372549020000002" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
+                    <state key="normal" title="Try again">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
                     <connections>
                         <action selector="retryAction:" destination="-1" eventType="touchUpInside" id="683-dD-rb9"/>
                     </connections>
@@ -42,12 +45,16 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="jKj-eZ-0xU" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="5B3-Zv-b2A"/>
+                <constraint firstItem="ziA-kQ-e0E" firstAttribute="width" secondItem="jKj-eZ-0xU" secondAttribute="width" id="6Ln-3n-GiN"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ziA-kQ-e0E" secondAttribute="bottom" priority="250" constant="289" id="NCF-Jx-Gxg"/>
                 <constraint firstItem="jKj-eZ-0xU" firstAttribute="top" secondItem="Qeb-nd-Htf" secondAttribute="bottom" constant="40" id="Pbe-3j-nuI"/>
                 <constraint firstItem="Qeb-nd-Htf" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="QmG-06-mH7"/>
                 <constraint firstItem="jKj-eZ-0xU" firstAttribute="top" secondItem="Qeb-nd-Htf" secondAttribute="bottom" constant="40" id="YkF-QV-NxO"/>
                 <constraint firstAttribute="trailing" secondItem="Qeb-nd-Htf" secondAttribute="trailing" constant="20" id="Zgd-I1-pji"/>
                 <constraint firstItem="jKj-eZ-0xU" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="hQ5-Ap-lyh"/>
                 <constraint firstItem="Qeb-nd-Htf" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" priority="250" constant="255" id="nxs-dx-C1W"/>
+                <constraint firstItem="ziA-kQ-e0E" firstAttribute="top" secondItem="jKj-eZ-0xU" secondAttribute="bottom" constant="30" id="pwP-hv-Rvi"/>
+                <constraint firstItem="ziA-kQ-e0E" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="rOn-ah-wXY"/>
                 <constraint firstItem="Qeb-nd-Htf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="zyx-a6-0S2"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
