@@ -11,12 +11,9 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    private let privateKey = KeychainManager(key: "MarvelPrivateKey")
-    private let publicKey = KeychainManager(key: "MarvelPublicKey")
-    
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let isKeyChainEmpty = checkIfKeychainExist(privateKey, publicKey)
-        isKeyChainEmpty ? storeKeychains(privateKey, publicKey) : nil
+        
         
         return true
     }
@@ -34,15 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
-    //MARK: Keychain fucntions
-    private func checkIfKeychainExist(_ privateKey: KeychainManager, _ publicKey: KeychainManager) -> Bool {
-        let isKeychainEmpty = privateKey.readStringValue().isEmpty || publicKey.readStringValue().isEmpty
-         return isKeychainEmpty ? true : false
-    }
-    
-    private func storeKeychains(_ privateKey: KeychainManager, _ publicKey: KeychainManager) {
-        privateKey.storeString(value: "a52d24c4a5ba214407207cc81e5589c0b24673eb")
-        publicKey.storeString(value: "194ee5cf836e30f41ca7fa8ae4e9e34c")
-    }
+
 }
 

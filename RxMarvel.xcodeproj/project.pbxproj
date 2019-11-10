@@ -25,6 +25,7 @@
 		C5546F302371FA0200529D27 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5546F2F2371FA0200529D27 /* String+extension.swift */; };
 		C5546F332371FB6700529D27 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5546F322371FB6700529D27 /* KeychainManager.swift */; };
 		C5546F392372001E00529D27 /* KeychainWrapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5546F382372001E00529D27 /* KeychainWrapperTests.swift */; };
+		C562D2B123780F2C00E02342 /* MarvelSettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C562D2B023780F2C00E02342 /* MarvelSettingsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		C5546F2F2371FA0200529D27 /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
 		C5546F322371FB6700529D27 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		C5546F382372001E00529D27 /* KeychainWrapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrapperTests.swift; sourceTree = "<group>"; };
+		C562D2B023780F2C00E02342 /* MarvelSettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelSettingsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				C508E92623721B6B00ED3294 /* Features */,
+				C562D2B023780F2C00E02342 /* MarvelSettingsManager.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 				C50EC718237360DA00E5E79A /* GetCellIdentifierProtocol.swift in Sources */,
 				C508E97C2372260000ED3294 /* URLRequest+extension.swift in Sources */,
 				C5546EF72371EF8D00529D27 /* AppDelegate.swift in Sources */,
+				C562D2B123780F2C00E02342 /* MarvelSettingsManager.swift in Sources */,
 				C50EC71423735F8D00E5E79A /* CharactersListViewController.swift in Sources */,
 				C508E97A237224C700ED3294 /* CharacterListModel.swift in Sources */,
 				C508E98223722C9800ED3294 /* CharacterListViewModel.swift in Sources */,
