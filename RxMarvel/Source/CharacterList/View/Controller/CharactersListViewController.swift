@@ -15,19 +15,15 @@ class CharactersListViewController: UIViewController, UITableViewDelegate {
     
     //MARK: Variables
     var settingsManager: SettingsManagerProtocol = MarvelSettingsManager()
-    var request: MarvelRequestProtocol = MarvelRequest()
+    var viewModel: CharacterListViewModel = CharacterListViewModel()
     
     private let disposeBag = DisposeBag()
-    private var charactersListVM: CharacterListViewModel = CharacterListViewModel()
 
     //MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    
-    @IBOutlet weak var searchTextfield: UITextField!
-    
+        
     //MARK: Lifecycles
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,9 +32,10 @@ class CharactersListViewController: UIViewController, UITableViewDelegate {
         
         tableView.delegate = self
         tableView.backgroundView = loadingView()
-        setupRx()
+        setupRxCells()
     }
     
+    //MARK: Load Views
     private func loadingView() -> UIView {
         let view = UIView()
         let loader = UIActivityIndicatorView(style: .large)
@@ -58,10 +55,10 @@ class CharactersListViewController: UIViewController, UITableViewDelegate {
         return view
     }
     
-    private func setupRx() {
+    private func setupRxCells() {
         let url = settingsManager.apiURL
         let latestSearch = searchBar.rx.text.orEmpty
-        let loadData = fetchCharactersFrom(url: url).do(onError: { (error) in
+        let loadData = viewModel.fetchCharactersFrom(url: url).do(onError: { (error) in
             switch error {
             case RxCocoaURLError.httpRequestFailed:
                 break
@@ -85,28 +82,17 @@ class CharactersListViewController: UIViewController, UITableViewDelegate {
         }.bind(to: tableView.rx.items(cellIdentifier: CharacterListTableViewCell.cellIdentifier(),
                                          cellType: CharacterListTableViewCell.self)) {
                                             (index, viewModel: CharacterViewModel, cell) in
-                                            let url = viewModel.characterResult.thumbnail.imageURL()
+                                            
                                             cell.characterLabel.text = viewModel.characterResult.name
                                             //Bind with kingfisher
+                                            let url = viewModel.characterResult.thumbnail.imageURL()
                                             cell.characterImage.kf.setImage(with: url)
         }
         .disposed(by: disposeBag)
     }
-
-    //MARK: Fetch Characters
-    
-    func fetchCharactersFrom(url: String) -> Observable<[CharacterViewModel]> {
-        guard let existUrl = URL(string: url) else { return .just([]) }
-        let resource = Resource<MarvelAPI>(url: existUrl)
-        
-        return request.load(resource: resource).map({ (characterResponse) -> [CharacterViewModel] in
-            let characters = characterResponse.data.results
-            let viewModel = CharacterListViewModel.init(characters)
-            return viewModel.characterListVM
-        })
-    }
 }
 
+    //MARK: UIScrollViewDelegate
 extension CharactersListViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         searchBar.resignFirstResponder()
