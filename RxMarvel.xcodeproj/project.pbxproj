@@ -29,6 +29,9 @@
 		C562D2CD2378404B00E02342 /* StoryboardsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C562D2CC2378404B00E02342 /* StoryboardsUtils.swift */; };
 		C5F1078D23787A81007BE1D8 /* ErrorServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F1078B23787A81007BE1D8 /* ErrorServiceViewController.swift */; };
 		C5F1078E23787A81007BE1D8 /* ErrorServiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5F1078C23787A81007BE1D8 /* ErrorServiceViewController.xib */; };
+		C5F44E652379D30D00391463 /* CharacterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F44E632379D30D00391463 /* CharacterDetailViewController.swift */; };
+		C5F44E662379D30D00391463 /* CharacterDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5F44E642379D30D00391463 /* CharacterDetailViewController.xib */; };
+		C5F44E682379EDBF00391463 /* CharacterDetalViewodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F44E672379EDBF00391463 /* CharacterDetalViewodel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +82,9 @@
 		C562D2CC2378404B00E02342 /* StoryboardsUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardsUtils.swift; sourceTree = "<group>"; };
 		C5F1078B23787A81007BE1D8 /* ErrorServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorServiceViewController.swift; sourceTree = "<group>"; };
 		C5F1078C23787A81007BE1D8 /* ErrorServiceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorServiceViewController.xib; sourceTree = "<group>"; };
+		C5F44E632379D30D00391463 /* CharacterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewController.swift; sourceTree = "<group>"; };
+		C5F44E642379D30D00391463 /* CharacterDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterDetailViewController.xib; sourceTree = "<group>"; };
+		C5F44E672379EDBF00391463 /* CharacterDetalViewodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetalViewodel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -338,6 +344,8 @@
 		C562D2CB23783D6B00E02342 /* CharacterDetail */ = {
 			isa = PBXGroup;
 			children = (
+				C5F44E5F2379D2BA00391463 /* Data */,
+				C5F44E5E2379D2B000391463 /* View */,
 			);
 			path = CharacterDetail;
 			sourceTree = "<group>";
@@ -357,6 +365,47 @@
 				C5F1078C23787A81007BE1D8 /* ErrorServiceViewController.xib */,
 			);
 			path = ErrorViewWithService;
+			sourceTree = "<group>";
+		};
+		C5F44E5E2379D2B000391463 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C5F44E622379D2D700391463 /* ViewModel */,
+				C5F44E612379D2CF00391463 /* Controller */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C5F44E5F2379D2BA00391463 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				C5F44E602379D2C200391463 /* Model */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		C5F44E602379D2C200391463 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C5F44E612379D2CF00391463 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C5F44E632379D30D00391463 /* CharacterDetailViewController.swift */,
+				C5F44E642379D30D00391463 /* CharacterDetailViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C5F44E622379D2D700391463 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C5F44E672379EDBF00391463 /* CharacterDetalViewodel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -470,6 +519,7 @@
 				C5546F002371EF9000529D27 /* Assets.xcassets in Resources */,
 				C5F1078E23787A81007BE1D8 /* ErrorServiceViewController.xib in Resources */,
 				C562D2C123782CD200E02342 /* CharacterListTableViewCell.xib in Resources */,
+				C5F44E662379D30D00391463 /* CharacterDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,11 +592,13 @@
 				C50EC718237360DA00E5E79A /* GetCellIdentifierProtocol.swift in Sources */,
 				C508E97C2372260000ED3294 /* URLRequest+extension.swift in Sources */,
 				C562D2C223782CD200E02342 /* CharacterListTableViewCell.swift in Sources */,
+				C5F44E682379EDBF00391463 /* CharacterDetalViewodel.swift in Sources */,
 				C562D2C323782CD200E02342 /* CharacterListModel.swift in Sources */,
 				C5546EF72371EF8D00529D27 /* AppDelegate.swift in Sources */,
 				C562D2B123780F2C00E02342 /* MarvelSettingsManager.swift in Sources */,
 				C562D2C023782CD200E02342 /* CharacterListViewModel.swift in Sources */,
 				C5546F302371FA0200529D27 /* String+extension.swift in Sources */,
+				C5F44E652379D30D00391463 /* CharacterDetailViewController.swift in Sources */,
 				C5546EF92371EF8D00529D27 /* SceneDelegate.swift in Sources */,
 				C5546F332371FB6700529D27 /* KeychainManager.swift in Sources */,
 			);

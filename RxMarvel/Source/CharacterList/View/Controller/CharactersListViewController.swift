@@ -29,9 +29,7 @@ class CharactersListViewController: UIViewController, UITableViewDelegate {
 
         tableView.register(UINib(nibName: CharacterListTableViewCell.cellIdentifier(), bundle: nil),
                            forCellReuseIdentifier: CharacterListTableViewCell.cellIdentifier())
-        
-        tableView.delegate = self
-        tableView.dataSource = nil
+        tableView.delegate = nil
         tableView.backgroundView = loadingView()
         setupRxCells()
     }
@@ -70,24 +68,32 @@ class CharactersListViewController: UIViewController, UITableViewDelegate {
             default:
                 self.showErrorView()
             }
-        }, onCompleted: {
-            DispatchQueue.main.async {
-                self.tableView.backgroundView = nil
-            }
+            }, onCompleted: {
+                DispatchQueue.main.async {
+                    self.tableView.backgroundView = nil
+                }
         }).catchErrorJustReturn([])
         
         // Binding to tableview
         Observable.combineLatest(loadData, latestSearch) { results, queryText in
             return results.filter { $0.characterResult.name.lowercased().hasPrefix(queryText.lowercased()) || queryText.isEmpty }
         }.bind(to: tableView.rx.items(cellIdentifier: CharacterListTableViewCell.cellIdentifier(),
-                                         cellType: CharacterListTableViewCell.self)) {
-                                            (index, viewModel: CharacterViewModel, cell) in
-                                            
-                                            cell.characterLabel.text = viewModel.characterResult.name
-                                            //Bind with kingfisher
-                                            let url = viewModel.characterResult.thumbnail.imageURL()
-                                            cell.characterImage.kf.setImage(with: url)
+                                      cellType: CharacterListTableViewCell.self)) {
+                                        (index, viewModel: CharacterViewModel, cell) in
+                                        
+                                        cell.characterLabel.text = viewModel.characterResult.name
+                                        //Bind with kingfisher
+                                        let url = viewModel.characterResult.thumbnail.imageURL()
+                                        cell.characterImage.kf.setImage(with: url)
         }
+        .disposed(by: disposeBag)
+        
+        //Pass the character with the user interaction
+        tableView.rx.modelSelected(CharacterViewModel.self)
+            .subscribe(onNext: { value in                
+                
+                self.present(CharacterDetailViewController(character: value), animated: true)
+        })
         .disposed(by: disposeBag)
     }
 }

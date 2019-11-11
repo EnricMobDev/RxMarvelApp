@@ -18,4 +18,5 @@ enum Storyboards: String {
 
 enum ViewControllers: String {
     case charactersListViewController = "CharactersListViewController"
+    case characterDetailViewController = "CharacterDetailViewController"
 }
