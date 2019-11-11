@@ -98,6 +98,7 @@ class CharactersListViewController: UIViewController, UITableViewDelegate {
         .disposed(by: disposeBag)
     }
     
+    //MARK: ScrollViewWillBeginDragging
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         searchBar.resignFirstResponder()
     }
