@@ -29,7 +29,8 @@ class CharactersListViewController: UIViewController, UITableViewDelegate {
 
         tableView.register(UINib(nibName: CharacterListTableViewCell.cellIdentifier(), bundle: nil),
                            forCellReuseIdentifier: CharacterListTableViewCell.cellIdentifier())
-        tableView.delegate = nil
+        
+        tableView.delegate = self
         tableView.backgroundView = loadingView()
         setupRxCells()
     }
@@ -95,6 +96,10 @@ class CharactersListViewController: UIViewController, UITableViewDelegate {
                 self.present(CharacterDetailViewController(character: value), animated: true)
         })
         .disposed(by: disposeBag)
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        searchBar.resignFirstResponder()
     }
 }
 
