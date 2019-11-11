@@ -10,8 +10,14 @@ import UIKit
 
 class CharacterDetailViewController: UIViewController {
 
+    //MARK: IBOutlets
+    @IBOutlet weak var imageCharacter: UIImageView!
+    @IBOutlet weak var characterName: UILabel!
+    
+    //MARK: Lyfecicle
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
+    
 }
