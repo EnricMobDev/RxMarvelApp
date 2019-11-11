@@ -23,7 +23,7 @@ One of the requierements for this challenge was to implement a simple, not overe
 I decided to use RxSwift first of all for show my skills also in last keynote Apple presents SwiftUI and Combine.
 I think apple guide us to use MVVM with a reactive programming for this reason I decided to implement this app with RxSwift.
 
-#### Improvments
+#### Improvements
 - Create a router for separate the comunication between viewModels, using router for create the new view and pass the dependency.
 - Create test with RxTest
 - Detail part: I passed the character for constructor for detail view and it's better option pass to the other view model first and after this view model load the character in the view oor use the router for this responsabilities.
